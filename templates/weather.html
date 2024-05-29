@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Details for {{ weather_data['name'] }}</h1>
+        <div class="weather-info">
+            <p><i class="fas fa-thermometer-half"></i> Temperature: {{ weather_data['main']['temp'] }}°C</p>
+            <p><i class="fas fa-cloud-sun"></i> Weather: {{ weather_data['weather'][0]['description'] }}</p>
+            <p><i class="fas fa-tint"></i> Humidity: {{ weather_data['main']['humidity'] }}%</p>
+            <p><i class="fas fa-wind"></i> Wind Speed: {{ weather_data['wind']['speed'] }} m/s</p>
+            <p><i class="fas fa-tachometer-alt"></i> Pressure: {{ weather_data['main']['pressure'] }} hPa</p>
+            <p><i class="fas fa-eye"></i> Visibility: {{ weather_data['visibility'] / 1000 }} km</p>
+            <p><i class="fas fa-temperature-low"></i> Feels Like: {{ weather_data['main']['feels_like'] }}°C</p>
+            <p><i class="fas fa-temperature-high"></i> Min Temperature: {{ weather_data['main']['temp_min'] }}°C</p>
+            <p><i class="fas fa-temperature-high"></i> Max Temperature: {{ weather_data['main']['temp_max'] }}°C</p>
+            <p><i class="fas fa-sun"></i> Sunrise: {{ datetime.fromtimestamp(weather_data['sys']['sunrise']).strftime('%H:%M:%S') }}</p>
+            <p><i class="fas fa-moon"></i> Sunset: {{ datetime.fromtimestamp(weather_data['sys']['sunset']).strftime('%H:%M:%S') }}</p>
+        </div>
+        <a href="{{ url_for('index') }}" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>
